@@ -1,25 +1,22 @@
 import { Engine } from '@botbuildercommunity/middleware-engine-core';
 import { NlpManager } from 'node-nlp';
-import * as path from 'path';
 
 /**
  * @module middleware-test/middleware/middleware-nlpjs-nlu
  */
 
 export class NlpjsEngine extends Engine {
-  private _settings: any;
-  private _nlu: NlpManager;
+  private readonly _nlu: NlpManager;
 
-  constructor(settings: any) {
+  private constructor(nlu: NlpManager) {
     super();
-    this._settings = settings;
-    this._nlu = new NlpManager(settings);
+    this._nlu = nlu;
   }
 
-  public static async WithNluModel(modelPath: string) {
-    return async (n: NlpManager): Promise<void> => {
-      await n.load(modelPath);
-    };
+  public static async build(settings: any, modelPath: string): Promise<NlpjsEngine> {
+    const nlu = new NlpManager(settings);
+    await nlu.load(modelPath);
+    return new NlpjsEngine(nlu);
   }
 
   private async recognize(text: string): Promise<any> {
@@ -34,7 +31,7 @@ export class NlpjsEngine extends Engine {
     return Promise.resolve(undefined);
   }
 
-  public async detectLanguage(input: any, config?: any): Promise<any> {
+  public async detectLanguage(input: any, config?: any): Promise<string | undefined> {
     const result = await this.recognize(input);
     if (result && result.localeIso2) {
       return Promise.resolve(result.localeIso2);
@@ -54,7 +51,11 @@ export class NlpjsEngine extends Engine {
     return Promise.resolve(undefined);
   }
 
-  public async sentiment(input: any, config?: any): Promise<any> {
+  public async sentiment(input: any, config?: any): Promise<any | undefined> {
+    const result = await this.recognize(input);
+    if (result) {
+      return Promise.resolve(result.sentiment);
+    }
     return Promise.resolve(undefined);
   }
 }
