@@ -59,4 +59,12 @@ export class NlpjsEngine {
     }
     return Promise.resolve(undefined);
   }
+
+  public async intent(input: string): Promise<{ intent: string; score: number; domain: string } | undefined> {
+    const result = await this.recognize(input);
+    if (result) {
+      return Promise.resolve({ intent: result.intent, score: result.score, domain: result.domain });
+    }
+    return Promise.resolve(undefined);
+  }
 }

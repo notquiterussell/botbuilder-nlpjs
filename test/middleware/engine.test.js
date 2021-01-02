@@ -126,4 +126,12 @@ describe('Engine tests', () => {
       },
     ]);
   });
+
+  it('Can provide an intent', async () => {
+    expect(await engine.intent('I am a chatbot and I love to help.')).toEqual({
+      domain: 'default',
+      intent: 'smalltalk.agent.chatbot',
+      score: 0.6988612924435499,
+    });
+  });
 });
