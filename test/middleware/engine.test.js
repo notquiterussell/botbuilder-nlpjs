@@ -30,7 +30,7 @@ describe('Engine tests', () => {
         languages: ['en'],
         forceNER: true,
       },
-      path.join(__dirname, '../../target/private.json')
+      path.join(__dirname, 'private.json')
     );
     expect(await engine.sentiment('I am a chatbot and I love to help.')).toEqual({
       average: 0.125,

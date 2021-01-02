@@ -13,15 +13,11 @@ help:
 setup: ## Set up the environment
 	npm ci;
 
-build: .clean train ## Compile to JS
+build: .clean ## Compile to JS
 	npm run build;
 
 test: ## Run the tests
 	npm test;
-
-train: .clean ## Train the bot
-	npm run smalltalk; \
-	npm run train;
 
 start: ## Run the bot
 	npm start;
