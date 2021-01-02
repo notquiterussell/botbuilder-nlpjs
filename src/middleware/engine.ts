@@ -40,7 +40,7 @@ export class NlpjsEngine extends Engine {
   }
 
   public async emotion(input: any, config?: any): Promise<any> {
-    return Promise.resolve(undefined);
+    return Promise.reject(`[emotion] is not supported by this engine. "${input}" cannot be processed`);
   }
 
   public async entities(input: any, config?: any): Promise<any> {
@@ -48,7 +48,7 @@ export class NlpjsEngine extends Engine {
   }
 
   public async keyPhrases(input: any, config?: any): Promise<any> {
-    return Promise.resolve(undefined);
+    return Promise.reject(`[keyPhrases] is not supported by this engine. "${input}" cannot be processed`);
   }
 
   public async sentiment(input: any, config?: any): Promise<any | undefined> {

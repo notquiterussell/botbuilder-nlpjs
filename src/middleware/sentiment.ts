@@ -1,5 +1,4 @@
 import { Middleware, TurnContext, ActivityTypes } from 'botbuilder';
-import { Engine } from '@botbuildercommunity/middleware-engine-core';
 import { NlpjsEngine } from './engine';
 
 /**
@@ -7,15 +6,10 @@ import { NlpjsEngine } from './engine';
  */
 
 export class SentimentAnalysis implements Middleware {
-  public readonly engine: Engine;
+  public readonly engine: NlpjsEngine;
 
-  private constructor(engine: Engine) {
+  public constructor(engine: NlpjsEngine) {
     this.engine = engine;
-  }
-
-  public static async build(nluFilePath: string, options?: any): Promise<SentimentAnalysis> {
-    const nlpjsEngine = await NlpjsEngine.build((options || {}).settings, nluFilePath);
-    return new SentimentAnalysis(nlpjsEngine);
   }
 
   public async onTurn(context: TurnContext, next: () => Promise<void>): Promise<void> {
