@@ -1,5 +1,5 @@
 {
-  "name": "middleware-test",
+  "name": "botbuilder-nlpjs",
   "version": "1.0.0",
   "description": "Middleware to delegate to nlp.js from Microsoft botbuilder",
   "main": "./lib/index.js",
@@ -21,10 +21,7 @@
     "node-nlp": "^4.17.2"
   },
   "devDependencies": {
-    "csv-parse": "^4.14.2",
     "jest": "^26.6.3",
-    "mocha": "^8.2.1",
-    "nyc": "^15.1.0",
     "prettier": "2.2.1",
     "typescript": "^4.1.3"
   }
