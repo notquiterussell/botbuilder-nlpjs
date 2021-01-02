@@ -40,4 +40,14 @@ describe('Engine tests', () => {
       vote: 'negative',
     });
   });
+
+  it('Can detect the categories of an utterance', async () => {
+    expect(await engine.classifications('Hello.')).toEqual([{ intent: 'smalltalk.greetings.hello', score: 1 }]);
+    expect(await engine.classifications('I am a chatbot and I love to help.')).toEqual([
+      { intent: 'smalltalk.agent.chatbot', score: 0.6988612924435499 },
+      { intent: 'smalltalk.greetings.nice_to_see_you', score: 0.2634891438375071 },
+      { intent: 'smalltalk.user.going_to_bed', score: 0.023582353418248395 },
+      { intent: 'smalltalk.agent.answer_my_question', score: 0.014067210300694653 },
+    ]);
+  });
 });

@@ -1,11 +1,11 @@
-import { Middleware, TurnContext, ActivityTypes } from 'botbuilder';
+import { ActivityTypes, Middleware, TurnContext } from 'botbuilder';
 import { NlpjsEngine } from './engine';
 
 /**
  * @module botbuildercommunity/middleware-watson-nlu
  */
 
-export class SentimentAnalysis implements Middleware {
+export class Classification implements Middleware {
   public readonly engine: NlpjsEngine;
 
   public constructor(engine: NlpjsEngine) {
@@ -16,8 +16,8 @@ export class SentimentAnalysis implements Middleware {
     if (context.activity.type === ActivityTypes.Message) {
       const input = context.activity.text;
       try {
-        const result = await this.engine.sentiment(input);
-        context.turnState.set('sentimentScore', { score: result.score, vote: result.vote });
+        const result = await this.engine.classifications(input);
+        context.turnState.set('classifications', result);
       } catch (e) {
         throw new Error(`Failed to process sentiment on ${context.activity.text}. Error: ${e}`);
       }

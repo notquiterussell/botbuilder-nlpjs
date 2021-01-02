@@ -1,15 +1,13 @@
-import { Engine } from '@botbuildercommunity/middleware-engine-core';
 import { NlpManager } from 'node-nlp';
 
 /**
  * @module middleware-test/middleware/middleware-nlpjs-nlu
  */
 
-export class NlpjsEngine extends Engine {
+export class NlpjsEngine {
   private readonly _nlu: NlpManager;
 
   private constructor(nlu: NlpManager) {
-    super();
     this._nlu = nlu;
   }
 
@@ -23,7 +21,18 @@ export class NlpjsEngine extends Engine {
     return this._nlu.process(text);
   }
 
-  public async categories(input: any, config?: any): Promise<any> {
+  public async classifications(input: any, config?: any): Promise<any> {
+    const result = await this.recognize(input);
+    if (result) {
+      return Promise.resolve(
+        result.classifications.reduce((acc, classification) => {
+          if (classification.score > 0) {
+            acc.push(classification);
+          }
+          return acc;
+        }, [])
+      );
+    }
     return Promise.resolve(undefined);
   }
 
@@ -37,10 +46,6 @@ export class NlpjsEngine extends Engine {
       return Promise.resolve(result.localeIso2);
     }
     return Promise.resolve(undefined);
-  }
-
-  public async emotion(input: any, config?: any): Promise<any> {
-    return Promise.reject(`[emotion] is not supported by this engine. "${input}" cannot be processed`);
   }
 
   public async entities(input: any, config?: any): Promise<any> {

@@ -17,7 +17,6 @@
   "author": "Russell Geraghty <russell@rosesareblue.co.uk>",
   "license": "MIT",
   "dependencies": {
-    "@botbuildercommunity/middleware-engine-core": "^1.1.0",
     "botbuilder": "^4.11.0",
     "node-nlp": "^4.17.2"
   },
