@@ -19,7 +19,7 @@ export class IntentAnalysis implements Middleware {
         const result = await this.engine.intent(input);
         context.turnState.set('intent', result);
       } catch (e) {
-        throw new Error(`Failed to process sentiment on ${context.activity.text}. Error: ${e}`);
+        throw new Error(`Failed to process intent on ${context.activity.text}. Error: ${e}`);
       }
     }
     await next();

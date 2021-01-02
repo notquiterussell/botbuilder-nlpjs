@@ -19,7 +19,7 @@ export class EntityAnalysis implements Middleware {
         const result = await this.engine.entities(input);
         context.turnState.set('entities', result);
       } catch (e) {
-        throw new Error(`Failed to process sentiment on ${context.activity.text}. Error: ${e}`);
+        throw new Error(`Failed to process entity on ${context.activity.text}. Error: ${e}`);
       }
     }
     await next();

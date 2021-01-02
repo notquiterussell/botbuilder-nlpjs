@@ -19,7 +19,7 @@ export class Classification implements Middleware {
         const result = await this.engine.classifications(input);
         context.turnState.set('classifications', result);
       } catch (e) {
-        throw new Error(`Failed to process sentiment on ${context.activity.text}. Error: ${e}`);
+        throw new Error(`Failed to process classification on ${context.activity.text}. Error: ${e}`);
       }
     }
     await next();
