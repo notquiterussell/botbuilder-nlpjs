@@ -21,7 +21,7 @@ export class NlpjsEngine {
     return this._nlu.process(text);
   }
 
-  public async classifications(input: any, config?: any): Promise<any> {
+  public async classifications(input: string): Promise<[any]> {
     const result = await this.recognize(input);
     if (result) {
       return Promise.resolve(
@@ -36,11 +36,7 @@ export class NlpjsEngine {
     return Promise.resolve(undefined);
   }
 
-  public async concepts(input: any, config?: any): Promise<any> {
-    return Promise.resolve(undefined);
-  }
-
-  public async detectLanguage(input: any, config?: any): Promise<string | undefined> {
+  public async detectLanguage(input: string): Promise<string | undefined> {
     const result = await this.recognize(input);
     if (result && result.localeIso2) {
       return Promise.resolve(result.localeIso2);
@@ -48,15 +44,15 @@ export class NlpjsEngine {
     return Promise.resolve(undefined);
   }
 
-  public async entities(input: any, config?: any): Promise<any> {
+  public async entities(input: string): Promise<[any]> {
+    const result = await this.recognize(input);
+    if (result) {
+      return Promise.resolve(result.entities);
+    }
     return Promise.resolve(undefined);
   }
 
-  public async keyPhrases(input: any, config?: any): Promise<any> {
-    return Promise.reject(`[keyPhrases] is not supported by this engine. "${input}" cannot be processed`);
-  }
-
-  public async sentiment(input: any, config?: any): Promise<any | undefined> {
+  public async sentiment(input: string): Promise<{ score: number; vote: string } | undefined> {
     const result = await this.recognize(input);
     if (result) {
       return Promise.resolve(result.sentiment);
