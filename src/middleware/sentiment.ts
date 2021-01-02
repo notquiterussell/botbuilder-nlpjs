@@ -7,10 +7,15 @@ import { NlpjsEngine } from './engine';
  */
 
 export class SentimentAnalysis implements Middleware {
-  public engine: Engine;
+  public readonly engine: Engine;
 
-  public async build(nluFilePath: string, options?: any) {
-    this.engine = await NlpjsEngine.build((options || {}).settings, nluFilePath);
+  private constructor(engine: Engine) {
+    this.engine = engine;
+  }
+
+  public static async build(nluFilePath: string, options?: any): Promise<SentimentAnalysis> {
+    const nlpjsEngine = await NlpjsEngine.build((options || {}).settings, nluFilePath);
+    return new SentimentAnalysis(nlpjsEngine);
   }
 
   public async onTurn(context: TurnContext, next: () => Promise<void>): Promise<void> {
