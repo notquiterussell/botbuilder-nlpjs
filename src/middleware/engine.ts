@@ -67,4 +67,12 @@ export class NlpjsEngine {
     }
     return Promise.resolve(undefined);
   }
+
+  public async answer(input: string): Promise<string | undefined> {
+    const result = await this.recognize(input);
+    if (result) {
+      return Promise.resolve(result.answer);
+    }
+    return Promise.resolve(undefined);
+  }
 }

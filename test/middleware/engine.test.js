@@ -134,4 +134,10 @@ describe('Engine tests', () => {
       score: 0.6988612924435499,
     });
   });
+
+  it('Can provide an answer', async () => {
+    expect(["That's me. I chat, therefore I am.", "Indeed I am. I'll be here whenever you need me."]).toContain(
+      await engine.answer('I am a chatbot and I love to help.')
+    );
+  });
 });
