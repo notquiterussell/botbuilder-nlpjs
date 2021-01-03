@@ -4,3 +4,4 @@ export { Classification } from './middleware/classification';
 export { EntityAnalysis } from './middleware/entity';
 export { SentimentAnalysis } from './middleware/sentiment';
 export { NlpjsEngine } from './middleware/engine';
+export { LanguageAnalysis } from './middleware/language';

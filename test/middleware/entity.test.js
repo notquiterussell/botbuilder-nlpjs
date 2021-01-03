@@ -5,7 +5,7 @@ const { EntityAnalysis } = require('../../lib/middleware/entity');
 
 const path = require('path');
 
-describe('Intent middleware tests', () => {
+describe('Entity middleware tests', () => {
   let entity;
 
   beforeAll(async () => {
@@ -19,7 +19,7 @@ describe('Intent middleware tests', () => {
     entity = new EntityAnalysis(engine);
   });
 
-  it('should identify intent', async () => {
+  it('should identify entities', async () => {
     const adapter = new TestAdapter(async context => {
       expect(context.turnState.get('entities')).toEqual([
         {

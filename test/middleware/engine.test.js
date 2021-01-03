@@ -16,7 +16,13 @@ describe('Engine tests', () => {
   });
 
   it('Can detect the language of an utterance', async () => {
-    expect(await engine.detectLanguage('I am a chatbot and I love to help.')).toEqual('en');
+    expect(await NlpjsEngine.detectLanguage('I am a chatbot and I love to help.')).toHaveLength(3);
+
+    expect(
+      await NlpjsEngine.detectLanguage(
+        "Quan arriba la nit i la terra és fosca i la lluna és l'única llum que podem veure"
+      )
+    ).toHaveLength(3);
   });
 
   it('Can detect the sentiment of an utterance', async () => {
@@ -28,16 +34,6 @@ describe('Engine tests', () => {
       score: 1.125,
       type: 'senticon',
       vote: 'positive',
-    });
-
-    expect(await engine.sentiment('I am a chatbot and I hate cats.')).toEqual({
-      average: -0.09375,
-      locale: 'en',
-      numHits: 1,
-      numWords: 8,
-      score: -0.75,
-      type: 'senticon',
-      vote: 'negative',
     });
   });
 

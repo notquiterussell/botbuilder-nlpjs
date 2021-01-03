@@ -1,4 +1,4 @@
-import { NlpManager } from 'node-nlp';
+import { Language, NlpManager } from 'node-nlp';
 
 export class NlpjsEngine {
   private readonly _nlu: NlpManager;
@@ -32,12 +32,17 @@ export class NlpjsEngine {
     return Promise.resolve(undefined);
   }
 
-  public async detectLanguage(input: string): Promise<string | undefined> {
-    const result = await this.recognize(input);
-    if (result && result.localeIso2) {
-      return Promise.resolve(result.localeIso2);
+  public static detectLanguage(
+    input: string,
+    languages: [],
+    limit: Number = 3
+  ): { alpha3: string; alpha2: string; language: string; score: number } {
+    const language = new Language();
+    const result = language.guess(input, languages, limit);
+    console.log(result);
+    if (result) {
+      return result;
     }
-    return Promise.resolve(undefined);
   }
 
   public async entities(input: string): Promise<[any]> {
