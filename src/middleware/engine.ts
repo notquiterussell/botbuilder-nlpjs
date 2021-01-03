@@ -1,9 +1,5 @@
 import { NlpManager } from 'node-nlp';
 
-/**
- * @module middleware-test/middleware/middleware-nlpjs-nlu
- */
-
 export class NlpjsEngine {
   private readonly _nlu: NlpManager;
 

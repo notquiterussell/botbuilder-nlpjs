@@ -1,10 +1,6 @@
 import { ActivityTypes, Middleware, TurnContext } from 'botbuilder';
 import { NlpjsEngine } from './engine';
 
-/**
- * @module botbuildercommunity/middleware-watson-nlu
- */
-
 export class Classification implements Middleware {
   public readonly engine: NlpjsEngine;
 

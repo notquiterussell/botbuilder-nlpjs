@@ -1,10 +1,6 @@
 import { Middleware, TurnContext, ActivityTypes } from 'botbuilder';
 import { NlpjsEngine } from './engine';
 
-/**
- * @module botbuildercommunity/middleware-watson-nlu
- */
-
 export class SentimentAnalysis implements Middleware {
   public readonly engine: NlpjsEngine;
 
