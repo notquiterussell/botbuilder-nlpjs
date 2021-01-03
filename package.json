@@ -15,7 +15,7 @@
     "smalltalk": "node src/train/smalltalk"
   },
   "author": "Russell Geraghty <russell@rosesareblue.co.uk>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "botbuilder": "^4.11.0",
     "node-nlp": "^4.17.2"
