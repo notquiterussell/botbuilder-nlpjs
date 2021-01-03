@@ -1,6 +1,6 @@
-export { Answer } from './answer';
-export { IntentAnalysis } from './intent';
-export { Classification } from './classification';
-export { EntityAnalysis } from './entity';
-export { SentimentAnalysis } from './sentiment';
-export { NlpjsEngine } from './engine';
+export { Answer } from './middleware/answer';
+export { IntentAnalysis } from './middleware/intent';
+export { Classification } from './middleware/classification';
+export { EntityAnalysis } from './middleware/entity';
+export { SentimentAnalysis } from './middleware/sentiment';
+export { NlpjsEngine } from './middleware/engine';
