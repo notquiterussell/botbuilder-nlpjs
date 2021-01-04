@@ -1,5 +1,6 @@
+.idea
 src
-tests
+test
 .prettierrc
 .tool-versions
 .git
@@ -9,3 +10,5 @@ tests
 package-lock.json
 .DS_Store
 Makefile
+tsconfig.json
+.editorconfig
