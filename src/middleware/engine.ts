@@ -39,7 +39,6 @@ export class NlpjsEngine {
   ): { alpha3: string; alpha2: string; language: string; score: number } {
     const language = new Language();
     const result = language.guess(input, languages, limit);
-    console.log(result);
     if (result) {
       return result;
     }

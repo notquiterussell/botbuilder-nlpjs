@@ -4,7 +4,7 @@ EXECUTABLES = node npm
 K := $(foreach exec,$(EXECUTABLES), $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH. Please install.")))
 
 .clean:
-	rm -r lib;\
+	rm -rf lib;\
 	mkdir lib
 
 help:
