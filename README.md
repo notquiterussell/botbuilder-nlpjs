@@ -52,3 +52,7 @@ NlpjsEngine.build(
   // Do stuff with the engine
 });
 ```
+
+## Build status
+
+![Botbuilder-npmjs build status](https://github.com/notquiterussell/botbuilder-nlpjs/workflows/Node.js%20CI/badge.svg)
