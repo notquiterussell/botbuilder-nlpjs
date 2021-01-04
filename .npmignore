@@ -1,3 +1,11 @@
-node_modules/
-test/
-lib/
+src
+tests
+.prettierrc
+.tool-versions
+.git
+.git/
+.gitattributes
+.github/
+package-lock.json
+.DS_Store
+Makefile
