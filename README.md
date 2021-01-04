@@ -1,6 +1,6 @@
 # NLP.js based middleware for Microsoft Bot framework
 
-This is a middleware plugin for the [Microsoft Bot framework](https://dev.botframework.com).
+This is a middleware plugin for the [Botkit](https://botkit.ai) part of the [Microsoft Bot framework](https://dev.botframework.com).
 
 The plugin uses a local, private model via [NLP.js](https://github.com/axa-group/nlp.js/) to extract:
 * Input classifications
