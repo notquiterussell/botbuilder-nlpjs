@@ -1,6 +1,6 @@
 {
   "name": "botbuilder-nlpjs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Middleware to delegate to nlp.js from Microsoft Botbuilder and Botkit",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",

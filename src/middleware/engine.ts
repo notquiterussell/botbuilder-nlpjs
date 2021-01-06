@@ -1,5 +1,22 @@
 import { Language, NlpManager } from 'node-nlp';
 
+/**
+ * The sentiment of the input.
+ */
+export type Sentiment = { score: number; vote: string };
+/**
+ * The main detected intent (the one with the highest score). Use the `classifications` function to obtain a list by rank.
+ */
+export type Intent = { intent: string; score: number; domain: string };
+/**
+ * A detected language.
+ */
+export type DetectedLanguage = { alpha3: string; alpha2: string; language: string; score: number };
+/**
+ * A classification of the input as a match to intent.
+ */
+export type IntentClassification = { intent: string; score: number };
+
 export class NlpjsEngine {
   private readonly _nlu: NlpManager;
 
@@ -17,7 +34,7 @@ export class NlpjsEngine {
     return this._nlu.process(text);
   }
 
-  public async classifications(input: string): Promise<[any]> {
+  public async classifications(input: string): Promise<[IntentClassification] | undefined> {
     const result = await this.recognize(input);
     if (result) {
       return Promise.resolve(
@@ -32,11 +49,7 @@ export class NlpjsEngine {
     return Promise.resolve(undefined);
   }
 
-  public static detectLanguage(
-    input: string,
-    languages: [],
-    limit: Number = 3
-  ): { alpha3: string; alpha2: string; language: string; score: number } {
+  public static detectLanguage(input: string, languages: [], limit: Number = 3): [DetectedLanguage] {
     const language = new Language();
     const result = language.guess(input, languages, limit);
     if (result) {
@@ -52,7 +65,7 @@ export class NlpjsEngine {
     return Promise.resolve(undefined);
   }
 
-  public async sentiment(input: string): Promise<{ score: number; vote: string } | undefined> {
+  public async sentiment(input: string): Promise<Sentiment | undefined> {
     const result = await this.recognize(input);
     if (result) {
       return Promise.resolve(result.sentiment);
@@ -60,7 +73,7 @@ export class NlpjsEngine {
     return Promise.resolve(undefined);
   }
 
-  public async intent(input: string): Promise<{ intent: string; score: number; domain: string } | undefined> {
+  public async intent(input: string): Promise<Intent | undefined> {
     const result = await this.recognize(input);
     if (result) {
       return Promise.resolve({ intent: result.intent, score: result.score, domain: result.domain });
