@@ -11,7 +11,7 @@ describe('Intent middleware tests', () => {
   beforeAll(async () => {
     const engine = await NlpjsEngine.build(
       {
-        settings: { languages: ['en'] },
+        settings: { languages: ['en'], nlu: { useNoneFeature: true } },
       },
       path.join(__dirname, 'private.json')
     );
@@ -32,7 +32,7 @@ describe('Intent middleware tests', () => {
 
   it('should have None intent', async () => {
     const adapter = new TestAdapter(async context => {
-      expect(context.turnState.get('intent')).toEqual({ domain: undefined, intent: 'None', score: 0.5481918009694471 });
+      expect(context.turnState.get('intent')).toEqual({ domain: 'default', intent: 'None', score: 1 });
     });
     adapter.use(intent);
     await adapter.send('I am unknown');
