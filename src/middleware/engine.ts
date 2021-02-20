@@ -39,8 +39,8 @@ export class NlpjsEngine {
     if (result) {
       return Promise.resolve(
         result.classifications.reduce((acc, classification) => {
-          if (classification.score > 0) {
-            acc.push(classification);
+          if (classification.value > 0) {
+            acc.push({ intent: classification.label, score: classification.value });
           }
           return acc;
         }, [])

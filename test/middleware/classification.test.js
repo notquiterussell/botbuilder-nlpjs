@@ -22,7 +22,7 @@ describe('Classification middleware tests', () => {
     const adapter = new TestAdapter(async context => {
       expect(context.turnState.get('classifications')).toEqual([
         {
-          intent: 'smalltalk.greetings.hello',
+          intent: 'smalltalk/greetings.hello',
           score: 1,
         },
       ]);
@@ -33,7 +33,7 @@ describe('Classification middleware tests', () => {
 
   it('should have classifications', async () => {
     const adapter = new TestAdapter(async context => {
-      expect(context.turnState.get('classifications')).toEqual([{ intent: 'smalltalk.user.sad', score: 1 }]);
+      expect(context.turnState.get('classifications')).toEqual([{ intent: 'smalltalk/user.sad', score: 1 }]);
     });
     adapter.use(classifier);
     await adapter.send('I am sad');

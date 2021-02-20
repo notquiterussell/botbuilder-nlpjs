@@ -21,9 +21,9 @@ describe('Intent middleware tests', () => {
   it('should identify intent', async () => {
     const adapter = new TestAdapter(async context => {
       expect(context.turnState.get('intent')).toEqual({
-        intent: 'smalltalk.greetings.hello',
+        intent: 'smalltalk/greetings.hello',
         score: 1,
-        domain: 'default',
+        domain: 'smalltalk',
       });
     });
     adapter.use(intent);
@@ -32,7 +32,7 @@ describe('Intent middleware tests', () => {
 
   it('should have None intent', async () => {
     const adapter = new TestAdapter(async context => {
-      expect(context.turnState.get('intent')).toEqual({ domain: 'default', intent: 'None', score: 1 });
+      expect(context.turnState.get('intent')).toEqual({ intent: 'None', score: 0.6801592088124435 });
     });
     adapter.use(intent);
     await adapter.send('I am unknown');

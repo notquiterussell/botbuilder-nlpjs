@@ -24,36 +24,6 @@ describe('Entity middleware tests', () => {
       expect(context.turnState.get('entities')).toEqual([
         {
           accuracy: 0.95,
-          alias: 'number_0',
-          end: 15,
-          entity: 'number',
-          len: 3,
-          resolution: {
-            strValue: '100',
-            subtype: 'integer',
-            value: 100,
-          },
-          sourceText: '100',
-          start: 13,
-          utteranceText: '100',
-        },
-        {
-          accuracy: 0.95,
-          alias: 'number_1',
-          end: 55,
-          entity: 'number',
-          len: 8,
-          resolution: {
-            strValue: '11112222',
-            subtype: 'integer',
-            value: 11112222,
-          },
-          sourceText: '11112222',
-          start: 48,
-          utteranceText: '11112222',
-        },
-        {
-          accuracy: 0.95,
           end: 15,
           entity: 'currency',
           len: 4,
@@ -69,6 +39,32 @@ describe('Entity middleware tests', () => {
         },
         {
           accuracy: 0.95,
+          end: 37,
+          entity: 'email',
+          len: 18,
+          resolution: {
+            value: 'person@example.com',
+          },
+          sourceText: 'person@example.com',
+          start: 20,
+          utteranceText: 'person@example.com',
+        },
+        {
+          accuracy: 0.95,
+          end: 55,
+          entity: 'number',
+          len: 8,
+          resolution: {
+            strValue: '11112222',
+            subtype: 'integer',
+            value: 11112222,
+          },
+          sourceText: '11112222',
+          start: 48,
+          utteranceText: '11112222',
+        },
+        {
+          accuracy: 0.95,
           end: 55,
           entity: 'phonenumber',
           len: 8,
@@ -79,18 +75,6 @@ describe('Entity middleware tests', () => {
           sourceText: '11112222',
           start: 48,
           utteranceText: '11112222',
-        },
-        {
-          accuracy: 0.95,
-          end: 37,
-          entity: 'email',
-          len: 18,
-          resolution: {
-            value: 'person@example.com',
-          },
-          sourceText: 'person@example.com',
-          start: 20,
-          utteranceText: 'person@example.com',
         },
       ]);
     });

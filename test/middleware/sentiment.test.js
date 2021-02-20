@@ -20,7 +20,7 @@ describe('Sentiment middleware tests', () => {
 
   it('should have a positive sentiment', async () => {
     const adapter = new TestAdapter(async context => {
-      expect(context.turnState.get('sentimentScore')).toEqual({ score: 0.792, vote: 'positive' });
+      expect(context.turnState.get('sentimentScore')).toEqual({ score: 1.584, vote: 'positive' });
     });
     adapter.use(sentiment);
     await adapter.send('I am glorious');
@@ -28,7 +28,7 @@ describe('Sentiment middleware tests', () => {
 
   it('should have a negative sentiment', async () => {
     const adapter = new TestAdapter(async context => {
-      expect(context.turnState.get('sentimentScore')).toEqual({ score: -0.708, vote: 'negative' });
+      expect(context.turnState.get('sentimentScore')).toEqual({ score: -1, vote: 'negative' });
     });
     adapter.use(sentiment);
     await adapter.send('I am sad');
