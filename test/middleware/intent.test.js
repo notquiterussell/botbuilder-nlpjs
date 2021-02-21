@@ -32,7 +32,7 @@ describe('Intent middleware tests', () => {
 
   it('should have None intent', async () => {
     const adapter = new TestAdapter(async context => {
-      expect(context.turnState.get('intent')).toEqual({ intent: 'None', score: 0.6801592088124435 });
+      expect(context.turnState.get('intent')).toEqual({ intent: 'None', score: 0.6817511859954803 });
     });
     adapter.use(intent);
     await adapter.send('I am unknown');

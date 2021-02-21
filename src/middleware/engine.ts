@@ -18,10 +18,10 @@ export type DetectedLanguage = { alpha3: string; alpha2: string; language: strin
 export type IntentClassification = { intent: string; score: number };
 
 export class NlpjsEngine {
-  private readonly _nlu: NlpManager;
+  private readonly _manager: NlpManager;
 
   private constructor(nlu: NlpManager) {
-    this._nlu = nlu;
+    this._manager = nlu;
   }
 
   public static async build(settings: any, modelPath: string): Promise<NlpjsEngine> {
@@ -31,7 +31,7 @@ export class NlpjsEngine {
   }
 
   private async recognize(text: string): Promise<any> {
-    return this._nlu.process(text);
+    return this._manager.process(text);
   }
 
   public async classifications(input: string): Promise<[IntentClassification] | undefined> {
@@ -87,5 +87,14 @@ export class NlpjsEngine {
       return Promise.resolve(result.answer);
     }
     return Promise.resolve(undefined);
+  }
+
+  public async slots(input: string): Promise<any> {
+    const result = await this.recognize(input);
+    const context = {};
+    result.entities.forEach(entity => {
+      context[entity.entity] = entity;
+    });
+    return context;
   }
 }

@@ -75,6 +75,16 @@ describe('Engine tests', () => {
         utteranceText: 'person@example.com',
       },
       {
+        accuracy: 0.99,
+        end: 46,
+        entity: 'toCity',
+        len: 8,
+        sourceText: 'quoting ',
+        start: 39,
+        type: 'afterLast',
+        utteranceText: 'quoting ',
+      },
+      {
         accuracy: 0.95,
         end: 55,
         entity: 'number',
@@ -108,7 +118,7 @@ describe('Engine tests', () => {
     expect(await engine.intent('I am a chatbot and I love to help.')).toEqual({
       domain: 'smalltalk',
       intent: 'smalltalk/agent.chatbot:private',
-      score: 0.6517021716724349,
+      score: 0.6517505013911639,
     });
   });
 
@@ -116,5 +126,47 @@ describe('Engine tests', () => {
     expect(["That's me. I chat, therefore I am.", "Indeed I am. I'll be here whenever you need me."]).toContain(
       await engine.answer('I am a chatbot and I love to help.')
     );
+  });
+
+  it('Can fill slots', async () => {
+    let actual = await engine.slots('I want a train from Leeds to Manchester tomorrow');
+    expect(actual.date.resolution.date).toEqual(expect.any(Date));
+    delete actual.date.resolution.date;
+    expect(actual).toEqual({
+      date: {
+        accuracy: 0.95,
+        end: 47,
+        entity: 'date',
+        len: 8,
+        resolution: {
+          strValue: '2021-02-22',
+          timex: '2021-02-22',
+          type: 'date',
+        },
+        sourceText: 'tomorrow',
+        start: 40,
+        utteranceText: 'tomorrow',
+      },
+      fromCity: {
+        accuracy: 1,
+        end: 24,
+        entity: 'fromCity',
+        len: 5,
+        sourceText: 'Leeds',
+        start: 20,
+        type: 'between',
+        utteranceText: 'Leeds',
+      },
+      toCity: {
+        accuracy: 0.99,
+        end: 38,
+        entity: 'toCity',
+        len: 10,
+        sourceText: 'Manchester',
+        start: 29,
+        type: 'afterLast',
+        utteranceText: 'Manchester',
+      },
+    });
   });
 });

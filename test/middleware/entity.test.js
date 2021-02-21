@@ -50,6 +50,16 @@ describe('Entity middleware tests', () => {
           utteranceText: 'person@example.com',
         },
         {
+          accuracy: 0.99,
+          end: 46,
+          entity: 'toCity',
+          len: 8,
+          sourceText: 'quoting ',
+          start: 39,
+          type: 'afterLast',
+          utteranceText: 'quoting ',
+        },
+        {
           accuracy: 0.95,
           end: 55,
           entity: 'number',
