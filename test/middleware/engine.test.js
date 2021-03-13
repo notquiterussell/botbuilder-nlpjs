@@ -130,8 +130,13 @@ describe('Engine tests', () => {
 
   it('Can fill slots', async () => {
     let actual = await engine.slots('I want a train from Leeds to Manchester tomorrow');
-    expect(actual.date.resolution.date).toEqual(expect.any(Date));
-    delete actual.date.resolution.date;
+    const today = new Date();
+    let tomorrow = new Date(today);
+    tomorrow = new Date(tomorrow.setDate(today.getDate() + 1));
+    tomorrow.setHours(0);
+    tomorrow.setMinutes(0);
+    tomorrow.setSeconds(0);
+    tomorrow.setMilliseconds(0);
     expect(actual).toEqual({
       date: {
         accuracy: 0.95,
@@ -139,8 +144,9 @@ describe('Engine tests', () => {
         entity: 'date',
         len: 8,
         resolution: {
-          strValue: '2021-02-22',
-          timex: '2021-02-22',
+          date: tomorrow,
+          strValue: tomorrow.toISOString().slice(0, 10),
+          timex: tomorrow.toISOString().slice(0, 10),
           type: 'date',
         },
         sourceText: 'tomorrow',
