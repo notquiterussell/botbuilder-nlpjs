@@ -55,4 +55,4 @@ NlpjsEngine.build(
 
 ## Build status
 
-![Botbuilder-npmjs build status](https://github.com/notquiterussell/botbuilder-nlpjs/workflows/Node.js%20CI/badge.svg)
+![Node CI](https://github.com/notquiterussell/botbuilder-nlpjs/actions/workflows/node.js.yml/badge.svg) ![Code Quality](https://github.com/notquiterussell/botbuilder-nlpjs/actions/workflows/codeql-analysis.yml/badge.svg)
